@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -333,6 +332,14 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             height: 400px;
             border: 1px solid var(--gray);
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(128, 0, 32, 0.3);
+            border-color: var(--accent);
         }
 
         .collection-img {
@@ -526,6 +533,81 @@
             background-color: var(--dark-maroon);
         }
 
+        /* Collection Pages */
+        .collection-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(88, 0, 26, 0.3)), var(--bg-image) center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--light);
+            padding-top: 80px;
+            position: relative;
+            margin-bottom: 80px;
+        }
+
+        .collection-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .collection-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(128, 0, 32, 0.7);
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .collection-item {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid var(--gray);
+        }
+
+        .collection-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(128, 0, 32, 0.2);
+            border-color: var(--accent);
+        }
+
+        .collection-item-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .collection-item-info {
+            padding: 20px;
+        }
+
+        .collection-item-name {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--light);
+        }
+
+        .collection-item-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--light);
+            margin-bottom: 15px;
+        }
+
         /* Footer */
         footer {
             background-color: var(--primary);
@@ -608,6 +690,48 @@
             font-size: 0.9rem;
         }
 
+        /* Page Navigation */
+        .page-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .page-nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 5px;
+            background-color: var(--secondary);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+            border: 1px solid var(--gray);
+        }
+
+        .page-nav a:hover {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .page-nav a.active {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Collection Page Container */
+        .collection-page {
+            display: none;
+        }
+
+        .show-collection {
+            display: block;
+        }
+
+        .hide-collection {
+            display: none;
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .collections {
@@ -620,6 +744,10 @@
             
             .about-content {
                 grid-template-columns: 1fr;
+            }
+            
+            .collection-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -658,6 +786,10 @@
             }
             
             .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .collection-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -739,24 +871,27 @@
             </div>
             
             <div class="collections">
-                <div class="collection-card">
+                <!-- T-shirts Collection Card -->
+                <div class="collection-card" onclick="showCollection('t-shirts')">
                     <img src="1000227981.png" alt="T-shirts" class="collection-img">
                     <div class="collection-overlay">
                         <h3>T-shirts</h3>
-                        <p> Always ready to go</p>
+                        <p>Always ready to go</p>
                     </div>
                 </div>
                 
-                <div class="collection-card">
-                    <img src="1000224854.jpg" alt="Casual Collection" class="collection-img">
+                <!-- Retro Jerseys Collection Card -->
+                <div class="collection-card" onclick="showCollection('retro-jerseys')">
+                    <img src="1000224854.jpg" alt="Retro Jerseys" class="collection-img">
                     <div class="collection-overlay">
-                        <h3>Retro Jerseys </h3>
+                        <h3>Retro Jerseys</h3>
                         <p>Wear a piece of history</p>
                     </div>
                 </div>
                 
-                <div class="collection-card">
-                    <img src="1000228020.webp" alt="Retro Jersey" class="collection-img">
+                <!-- New Season Jerseys Collection Card -->
+                <div class="collection-card" onclick="showCollection('new-season-jerseys')">
+                    <img src="1000228020.webp" alt="New Season Jersey" class="collection-img">
                     <div class="collection-overlay">
                         <h3>New Season Jersey</h3>
                         <p>True fans are always updated</p>
@@ -765,6 +900,289 @@
             </div>
         </div>
     </section>
+
+    <!-- Collection Pages -->
+    <!-- T-shirts Collection Page -->
+    <div id="t-shirts" class="collection-page">
+        <section class="collection-hero" style="--bg-image: url('1000227981.png')">
+            <div class="collection-hero-content">
+                <h1>T-Shirts Collection</h1>
+                <p>Premium quality t-shirts for every occasion</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured T-Shirts</h2>
+            </div>
+            
+            <div class="collection-grid">
+                <div class="collection-item">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80" alt="Classic Black Tee" class="collection-item-img">
+                    <div class="collection-item-info">
+                        <h3 class="collection-item-name">Classic Black Tee</h3>
+                        <div class="collection-item-price"><span class="currency">৳</span>450</div>
+                        <button class="add-to-cart snipcart-add-item"
+                            data-item-id="classic-black-tee"
+                            data-item-price="450"
+                            data-item-url="/"
+                            data-item-description="Premium cotton t-shirt"
+                            data-item-image="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80"
+                            data-item-name="Classic Black Tee"
+                            data-item-categories="T-shirts">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Graphic Print Tee" class="collection-item-img">
+                    <div class="collection-item-info">
+                        <h3 class="collection-item-name">Graphic Print Tee</h3>
+                        <div class="collection-item-price"><span class="currency">৳</span>550</div>
+                        <button class="add-to-cart snipcart-add-item"
+                            data-item-id="graphic-print-tee"
+                            data-item-price="550"
+                            data-item-url="/"
+                            data-item-description="T-shirt with artistic graphic print"
+                            data-item-image="https://images.unsplash.com/photo-1523381294911-8d3cead13475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                            data-item-name="Graphic Print Tee"
+                            data-item-categories="T-shirts">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80" alt="Premium White Tee" class="collection-item-img">
+                    <div class="collection-item-info">
+                        <h3 class="collection-item-name">Premium White Tee</h3>
+                        <div class="collection-item-price"><span class="currency">৳</span>500</div>
+                        <button class="add-to-cart snipcart-add-item"
+                            data-item-id="premium-white-tee"
+                            data-item-price="500"
+                            data-item-url="/"
+                            data-item-description="High-quality white t-shirt"
+                            data-item-image="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80"
+                            data-item-name="Premium White Tee"
+                            data-item-categories="T-shirts">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Sport Grey Tee" class="collection-item-img">
+                    <div class="collection-item-info">
+                        <h3 class="collection-item-name">Sport Grey Tee</h3>
+                        <div class="collection-item-price"><span class="currency">৳</span>480</div>
+                        <button class="add-to-cart snipcart-add-item"
+                            data-item-id="sport-grey-tee"
+                            data-item-price="480"
+                            data-item-url="/"
+                            data-item-description="Performance sport t-shirt"
+                            data-item-image="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                            data-item-name="Sport Grey Tee"
+                            data-item-categories="T-shirts">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-nav">
+                <a href="#" onclick="hideCollection()" class="btn">Back to Collections</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Retro Jerseys Collection Page -->
+    <div id="retro-jerseys" class="collection-page">
+        <section class="collection-hero" style="--bg-image: url('1000224854.jpg')">
+            <div class="collection-hero-content">
+                <h1>Retro Jerseys Collection</h1>
+                <p>Iconic jerseys from football history</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="section-title">
+                <h2>Classic Retro Jerseys</h2>
+            </div>
+            
+            <div class="collection-grid">
+                <div class="collection-item">
+                    <img src="1000224074.jpg" alt="AC Milan White Retro" class="collection-item-img">
+                    <div class="collection-item-info">
+                        <h3 class="collection-item-name">AC Milan White Retro</h3>
+                        <div class="collection-item-price"><span class="currency">৳</span>550</div>
+                        <button class="add-to-cart snipcart-add-item"
+                            data-item-id="ac-milan-white"
+                            data-item-price="550"
+                            data-item-url="/"
+                            data-item-description="Classic AC Milan retro jersey"
+                            data-item-image="1000224074.jpg"
+                            data-item-name="AC Milan White Retro"
+                            data-item-categories="Retro Jerseys">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <img src="1000224221.jpg" alt="Man United Black Retro" class="collection-item-img">
+                    <div class="collection-item-info">
+                        <h3 class="collection-item-name">Man United Black Retro</h3>
+                        <div class="collection-item-price"><span class="currency">৳</span>600</div>
+                        <button class="add-to-cart snipcart-add-item"
+                            data-item-id="man-united-black"
+                            data-item-price="600"
+                            data-item-url="/"
+                            data-item-description="Manchester United retro jersey"
+                            data-item-image="1000224221.jpg"
+                            data-item-name="Man United Black Retro"
+                            data-item-categories="Retro Jerseys">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <img src="https://images.unsplash.com/photo-1624628639856-100bf817fd55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Brazil Retro Jersey" class="collection-item-img">
+                    <div class="collection-item-info">
+                        <h3 class="collection-item-name">Brazil Retro Jersey</h3>
+                        <div class="collection-item-price"><span class="currency">৳</span>650</div>
+                        <button class="add-to-cart snipcart-add-item"
+                            data-item-id="brazil-retro"
+                            data-item-price="650"
+                            data-item-url="/"
+                            data-item-description="Classic Brazil national team jersey"
+                            data-item-image="https://images.unsplash.com/photo-1624628639856-100bf817fd55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+                            data-item-name="Brazil Retro Jersey"
+                            data-item-categories="Retro Jerseys">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <img src="https://images.unsplash.com/photo-1610484826967-09c92207754b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Argentina Retro Jersey" class="collection-item-img">
+                    <div class="collection-item-info">
+                        <h3 class="collection-item-name">Argentina Retro Jersey</h3>
+                        <div class="collection-item-price"><span class="currency">৳</span>620</div>
+                        <button class="add-to-cart snipcart-add-item"
+                            data-item-id="argentina-retro"
+                            data-item-price="620"
+                            data-item-url="/"
+                            data-item-description="Classic Argentina national team jersey"
+                            data-item-image="https://images.unsplash.com/photo-1610484826967-09c92207754b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                            data-item-name="Argentina Retro Jersey"
+                            data-item-categories="Retro Jerseys">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-nav">
+                <a href="#" onclick="hideCollection()" class="btn">Back to Collections</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Season Jerseys Collection Page -->
+    <div id="new-season-jerseys" class="collection-page">
+        <section class="collection-hero" style="--bg-image: url('1000228020.webp')">
+            <div class="collection-hero-content">
+                <h1>New Season Jersey Collection</h1>
+                <p>Latest designs for the upcoming season</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="section-title">
+                <h2>2025-2026 Season Jerseys</h2>
+            </div>
+            
+            <div class="collection-grid">
+                <div class="collection-item">
+                    <img src="1000228020.webp" alt="Real Madrid 25/26 3rd Kit" class="collection-item-img">
+                    <div class="collection-item-info">
+                        <h3 class="collection-item-name">Real Madrid 25/26 3rd Kit</h3>
+                        <div class="collection-item-price"><span class="currency">৳</span>700</div>
+                        <button class="add-to-cart snipcart-add-item"
+                            data-item-id="real-madrid-3rd"
+                            data-item-price="700"
+                            data-item-url="/"
+                            data-item-description="Real Madrid 2025-2026 third kit"
+                            data-item-image="1000228020.webp"
+                            data-item-name="Real Madrid 25/26 3rd Kit"
+                            data-item-categories="New Season Jerseys">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <img src="https://images.unsplash.com/photo-1610484826967-09c92207754b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Barcelona Home Kit" class="collection-item-img">
+                    <div class="collection-item-info">
+                        <h3 class="collection-item-name">Barcelona Home Kit 25/26</h3>
+                        <div class="collection-item-price"><span class="currency">৳</span>720</div>
+                        <button class="add-to-cart snipcart-add_item"
+                            data-item-id="barcelona-home"
+                            data-item-price="720"
+                            data-item-url="/"
+                            data-item-description="Barcelona 2025-2026 home kit"
+                            data-item-image="https://images.unsplash.com/photo-1610484826967-09c92207754b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                            data-item-name="Barcelona Home Kit 25/26"
+                            data-item-categories="New Season Jerseys">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Liverpool Away Kit" class="collection-item-img">
+                    <div class="collection-item-info">
+                        <h3 class="collection-item-name">Liverpool Away Kit 25/26</h3>
+                        <div class="collection-item-price"><span class="currency">৳</span>680</div>
+                        <button class="add-to-cart snipcart-add-item"
+                            data-item-id="liverpool-away"
+                            data-item-price="680"
+                            data-item-url="/"
+                            data-item-description="Liverpool 2025-2026 away kit"
+                            data-item-image="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
+                            data-item-name="Liverpool Away Kit 25/26"
+                            data-item-categories="New Season Jerseys">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <img src="https://images.unsplash.com/photo-1589489531730-7f5d9c371d0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80" alt="Chelsea Third Kit" class="collection-item-img">
+                    <div class="collection-item-info">
+                        <h3 class="collection-item-name">Chelsea Third Kit 25/26</h3>
+                        <div class="collection-item-price"><span class="currency">৳</span>690</div>
+                        <button class="add-to-cart snipcart-add-item"
+                            data-item-id="chelsea-third"
+                            data-item-price="690"
+                            data-item-url="/"
+                            data-item-description="Chelsea 2025-2026 third kit"
+                            data-item-image="https://images.unsplash.com/photo-1589489531730-7f5d9c371d0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80"
+                            data-item-name="Chelsea Third Kit 25/26"
+                            data-item-categories="New Season Jerseys">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-nav">
+                <a href="#" onclick="hideCollection()" class="btn">Back to Collections</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Featured Products -->
     <section class="section featured-products" id="products">
@@ -817,7 +1235,7 @@
                         <div class="product-price"><span class="currency">৳</span>600</div>
                         <button class="add-to-cart snipcart-add-item"
                             data-item-id="Man United Black Retro"
-                            data-item-price="3299"
+                            data-item-price="600"
                             data-item-url="/"
                             data-item-description="Retro Jerseys"
                             data-item-image="1000224221.jpg"
@@ -848,14 +1266,41 @@
                             data-item-url="/"
                             data-item-description="Real Madrid 25/26 3rd Kit"
                             data-item-image="1000228020.webp"
-                            data-item-name="Tailored Linen Blazer"
+                            data-item-name="Real Madrid 25/26 3rd Kit"
                             data-item-categories="New Season Jersey">
                             Add to Cart
                         </button>
                     </div>
                 </div>
                 
-            
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1589489531730-7f5d9c371d0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80" alt="Chelsea Third Kit" class="product-img">
+                    <div class="product-info">
+                        <div class="product-category">New Season Jersey</div>
+                        <h3 class="product-name">Chelsea Third Kit 25/26</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(36)</span>
+                        </div>
+                        <div class="product-price"><span class="currency">৳</span>690</div>
+                        <button class="add-to-cart snipcart-add-item"
+                            data-item-id="chelsea-third"
+                            data-item-price="690"
+                            data-item-url="/"
+                            data-item-description="Chelsea 2025-2026 third kit"
+                            data-item-image="https://images.unsplash.com/photo-1589489531730-7f5d9c371d0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80"
+                            data-item-name="Chelsea Third Kit 25/26"
+                            data-item-categories="New Season Jerseys">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- About Section -->
@@ -980,6 +1425,8 @@
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
                 const targetElement = document.querySelector(targetId);
                 
                 window.scrollTo({
@@ -993,6 +1440,27 @@
         document.addEventListener('snipcart.ready', () => {
             console.log('Snipcart is loaded and ready!');
         });
+
+        // Collection Page Navigation
+        function showCollection(collectionId) {
+            // Hide all collections
+            document.querySelectorAll('.collection-page').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show the selected collection
+            document.getElementById(collectionId).style.display = 'block';
+            
+            // Scroll to the top of the collection
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function hideCollection() {
+            // Hide all collection pages
+            document.querySelectorAll('.collection-page').forEach(page => {
+                page.style.display = 'none';
+            });
+        }
     </script>
 </body>
 </html>
