@@ -18,12 +18,12 @@
         :root {
             --primary: #000000;
             --secondary: #1a1a1a;
-            --accent: #ff0000;
+            --accent: #800020;  /* Deep maroon */
             --light: #ffffff;
             --gray: #333333;
             --text: #f0f0f0;
             --transition: all 0.3s ease;
-            --dark-red: #b30000;
+            --dark-maroon: #5a001a;
             --light-gray: #4d4d4d;
         }
 
@@ -38,6 +38,7 @@
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
             font-weight: 600;
+            color: var(--light);
         }
 
         .container {
@@ -58,7 +59,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             padding: 20px 0;
             transition: var(--transition);
-            border-bottom: 1px solid var(--dark-red);
+            border-bottom: 1px solid var(--accent);
         }
 
         .header-scrolled {
@@ -79,7 +80,6 @@
             color: var(--light);
             text-decoration: none;
             letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
 
         .logo span {
@@ -165,24 +165,13 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(139, 0, 0, 0.3)), url('1000227963.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(88, 0, 26, 0.3)), url('1000227963.jpg') center/cover no-repeat;
             display: flex;
             align-items: center;
             text-align: center;
             color: var(--light);
             padding-top: 80px;
             position: relative;
-        }
-
-        .hero:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(0,0,0,0.8) 0%, rgba(179,0,0,0.4) 100%);
-            z-index: 1;
         }
 
         .hero-content {
@@ -197,7 +186,7 @@
             font-size: 4.5rem;
             margin-bottom: 20px;
             letter-spacing: 2px;
-            text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            text-shadow: 0 0 20px rgba(128, 0, 32, 0.7);
         }
 
         .hero p {
@@ -244,7 +233,7 @@
         .btn:hover {
             color: var(--light);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.3);
+            box-shadow: 0 10px 20px rgba(128, 0, 32, 0.3);
         }
 
         .btn-outline {
@@ -298,7 +287,7 @@
         .add-to-cart:hover {
             background-color: var(--accent);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(128, 0, 32, 0.3);
         }
 
         /* Collections */
@@ -396,7 +385,7 @@
 
         .product-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255, 0, 0, 0.2);
+            box-shadow: 0 15px 30px rgba(128, 0, 32, 0.2);
             border-color: var(--accent);
         }
 
@@ -437,6 +426,11 @@
             font-size: 1rem;
             margin-right: 10px;
             font-weight: 400;
+        }
+
+        .currency {
+            color: var(--accent);
+            font-weight: 600;
         }
 
         .rating {
@@ -528,7 +522,7 @@
         }
 
         .newsletter-form button:hover {
-            background-color: var(--dark-red);
+            background-color: var(--dark-maroon);
         }
 
         /* Footer */
@@ -792,10 +786,10 @@
                             <i class="fas fa-star-half-alt"></i>
                             <span>(24)</span>
                         </div>
-                        <div class="product-price"> 550tk <span class="old-price">$700</span></div>
+                        <div class="product-price"><span class="currency">৳</span>550 <span class="old-price">৳700</span></div>
                         <button class="add-to-cart snipcart-add-item"
                             data-item-id="linen-blend-shirt"
-                            data-item-price="600"
+                            data-item-price="550"
                             data-item-url="/"
                             data-item-description="Premium Retro Jerseys"
                             data-item-image="1000224074.jpg"
@@ -819,10 +813,10 @@
                             <i class="fas fa-star"></i>
                             <span>(42)</span>
                         </div>
-                        <div class="product-price">$129.99</div>
+                        <div class="product-price"><span class="currency">৳</span>3,299</div>
                         <button class="add-to-cart snipcart-add-item"
                             data-item-id="floral-maxi-dress"
-                            data-item-price="129.99"
+                            data-item-price="3299"
                             data-item-url="/"
                             data-item-description="Elegant floral maxi dress for women"
                             data-item-image="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
@@ -846,10 +840,10 @@
                             <i class="far fa-star"></i>
                             <span>(18)</span>
                         </div>
-                        <div class="product-price">$149.99</div>
+                        <div class="product-price"><span class="currency">৳</span>4,499</div>
                         <button class="add-to-cart snipcart-add-item"
                             data-item-id="tailored-linen-blazer"
-                            data-item-price="149.99"
+                            data-item-price="4499"
                             data-item-url="/"
                             data-item-description="Tailored linen blazer for women"
                             data-item-image="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1036&q=80"
@@ -873,10 +867,10 @@
                             <i class="fas fa-star-half-alt"></i>
                             <span>(36)</span>
                         </div>
-                        <div class="product-price">$119.99</div>
+                        <div class="product-price"><span class="currency">৳</span>3,799</div>
                         <button class="add-to-cart snipcart-add-item"
                             data-item-id="classic-denim-jacket"
-                            data-item-price="119.99"
+                            data-item-price="3799"
                             data-item-url="/"
                             data-item-description="Classic denim jacket for men"
                             data-item-image="https://images.unsplash.com/photo-1520975916090-3105956eeacf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
